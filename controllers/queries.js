@@ -11,7 +11,7 @@ async function selectById(id) {
 		`SELECT * FROM main_table JOIN weapon_types ON main_table.type = weapon_types.type_id WHERE id = $1`,
 		[id],
 	);
-	return results.rows;
+	return results.rows[0];
 }
 async function selectByType(type) {
 	const results = await pool.query(
