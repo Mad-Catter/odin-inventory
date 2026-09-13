@@ -73,4 +73,40 @@ const weapons = [
 	new Weapon('Lady Frost', 155, 2, '/weapon_images/maces/lady_frost.png', 3, 3),
 ];
 
-module.exports = { weapon_types, weapons };
+// I should maybe make this into another table in the database.
+const weaponImagePaths = [
+	'/weapon_images/swords/iron_sword.png',
+	'/weapon_images/swords/steel_sword.png',
+	'/weapon_images/swords/iron_katana.png',
+	'/weapon_images/swords/steel_katana.png',
+	'/weapon_images/swords/steel_greatsword.png',
+	'/weapon_images/swords/vampire_sword.png',
+	'/weapon_images/swords/spider_sword.png',
+	'/weapon_images/swords/crystal_sword.png',
+	'/weapon_images/swords/ghost_flame.png',
+	'/weapon_images/swords/storms_wrath.png',
+
+	'/weapon_images/staffs/amber_staff.png',
+	'/weapon_images/staffs/emerald_staff.png',
+	'/weapon_images/staffs/ruby_staff.png',
+	'/weapon_images/staffs/void_staff.png',
+	'/weapon_images/staffs/ice_staff.png',
+	'/weapon_images/staffs/zephyrs_wings.png',
+	'/weapon_images/staffs/darkwoods_lord.png',
+
+	'/weapon_images/single_axes/iron_single_axe.png',
+	'/weapon_images/single_axes/steel_single_axe.png',
+	'/weapon_images/single_axes/onyx_single_axe.png',
+	'/weapon_images/single_axes/emerald_single_axe.png',
+
+	'/weapon_images/double_axes/steel_double_axe.png',
+	'/weapon_images/double_axes/blood_double_axe.png',
+	'/weapon_images/double_axes/night_and_day.png',
+
+	'/weapon_images/maces/iron_mace.png',
+	'/weapon_images/maces/gold_mace.png',
+	'/weapon_images/maces/silver_mace.png',
+	'/weapon_images/maces/lord_inferno.png',
+	'/weapon_images/maces/lady_frost.png',
+];
+module.exports = { weapon_types, weapons, weaponImagePaths };

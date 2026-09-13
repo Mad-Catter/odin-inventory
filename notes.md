@@ -1,3 +1,16 @@
+TODO 9/12/26 {
+    make form show if something is not selected.
+    Test delete, update queries.
+    Test errors in form.
+    Add category sorting to the main menu.
+    Either add button to enable resetting the inventory or admin password on deleting.
+    Design the details page and add editing and deleting.
+    Actually make the site not look terrible.
+    Add the ability to create and delete types of weapons.
+    
+}
+
+
 Pages needed {
     index/home page
     items page {

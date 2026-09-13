@@ -1,0 +1,160 @@
+@font-face {
+	font-family: 'MedievalSharp';
+	src: url('/MedievalSharp-regular.ttf') format('truetype');
+}
+:root {
+	--dark-wood: hsl(28, 68%, 12%);
+	--regular-wood: hsl(28, 69%, 25%);
+	--light-wood: hsl(28, 68%, 38%);
+	--bright-red: hsl(11, 80%, 63%);
+	--cream: hsl(58, 89%, 93%);
+}
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 'MedievalSharp', sans-serif;
+}
+header {
+	background-color: var(--dark-wood);
+	border-bottom: var(--light-wood) 3px solid;
+	padding: 10px;
+}
+header nav {
+	display: flex;
+	justify-content: space-around;
+}
+nav a {
+	font-size: 2rem;
+	text-decoration: none;
+}
+body {
+	background-color: var(--regular-wood);
+}
+h1 {
+	color: var(--bright-red);
+	text-align: center;
+	font-size: 3rem;
+	padding: 15px;
+}
+
+a,
+a:visited {
+	color: var(--cream);
+}
+
+/* index */
+.weapons-view {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	align-items: center;
+	justify-items: center;
+	gap: 15px;
+	border: var(--light-wood) 5px solid;
+	background-color: var(--dark-wood);
+}
+.item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	border-radius: 15px;
+	padding: 5px;
+}
+
+.item:hover {
+	background-color: hsla(0, 0%, 0%, 0.267);
+}
+.item img {
+	width: 50px;
+}
+.item p {
+	font-size: 1.25rem;
+}
+
+/* Create */
+label,
+h2 {
+	color: var(--cream);
+	font-size: 1.5rem;
+}
+label {
+	text-align: center;
+}
+input,
+select {
+	font-size: 1.5rem;
+}
+.form-container {
+	display: flex;
+}
+.left {
+	width: 70%;
+}
+.right {
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+section {
+	display: flex;
+	justify-content: space-around;
+	padding: 5px;
+	margin: 25px 0;
+}
+.input-label {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.button-wrapper {
+	display: flex;
+	justify-content: center;
+}
+.button-wrapper button {
+	color: var(--bright-red);
+	border: 5px solid gold;
+	background-color: var(--dark-wood);
+	font-size: 3rem;
+	padding: 15px;
+	border-radius: 15px;
+}
+.button-wrapper button:hover {
+	cursor: pointer;
+}
+
+/* Create IMG BOX */
+.img-box {
+	width: 310px;
+	height: 350px;
+	overflow-y: auto;
+	border: 4px solid var(--light-wood);
+	display: grid;
+	grid-template-columns: repeat(5, 50px);
+	padding: 5px;
+	gap: 5px;
+	background-color: var(--dark-wood);
+}
+.img-box img {
+	width: 45px;
+	height: 45px;
+}
+
+.img-box label {
+	display: flex;
+	border-radius: 15px;
+	width: 53px;
+	height: 53px;
+	border: 3px solid black;
+}
+.img-box label:hover {
+	background-color: hsla(0, 0%, 0%, 0.267);
+}
+.image-radio {
+	display: none;
+}
+.img-box .selected {
+	border: 3px solid gold;
+}

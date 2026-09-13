@@ -3,12 +3,87 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title><%req.body.=title%></title>
+		<title><%=title%></title>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 		<link rel="stylesheet" href="/style.css" />
 	</head>
 	<body>
 		<%- include('./partials/header') %>
-		<h1>Hello i am Create in Ye Olde Shoppe</h1>
+		
+		<h1>Create your weapon</h1>
+		<% if (locals.errors) { %>
+			<%- include("./partials/errors") %>
+		<%}  %>
+		<form action="./create" method="POST">
+			<div class="form-container">
+				<div class="left">
+					<section>
+						<div class="input-label">
+							<label for="name">Name:</label>
+							<input type="text" name="name" id="name" minlength="1" maxlength="30" required>
+						</div>
+					</section>
+					<section>
+						<div class="input-label">
+							<label for="price">Price:</label>
+							<input type="number" name="price" id="price" max="99999">
+						</div>
+						<div class="input-label">
+							<label for="quantity">Quantity:</label>
+							<input type="number" name="quantity" id="quantity" max="99999">
+						</div>
+					</section>
+					<section>
+						<div class="input-label">
+							<label for="tier">Tier:</label>
+							<select name="tier" id="tier">
+								<option value="">What tier is your weapon?</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+							</select>
+						</div>
+						<div class="input-label">
+							<label for="type">Type:</label>
+							<select name="type" id="type">
+								<option value="">What type of weapon is your weapon?</option>
+								<option value="1">Sword</option>
+								<option value="2">Double Headed Axe</option>
+								<option value="3">Mace</option>
+								<option value="4">Single Headed Axe</option>
+								<option value="5">Staff</option>
+							</select>
+						</div>
+					</section>
+				</div>
+				<div class="right">
+					<h2>Image:</h2>
+					<div class="img-box">
+						<% for (let i = 0; i < weaponImagePaths.length; i++ ) { %>
+							<% const img = weaponImagePaths[i] %>
+							<input type="radio" name="image" id="image<%=i%>" class="image-radio" value="<%=img%>" required>
+							<label for="image<%=i%>" class="radio-label">
+								<img src="<%=img%>" alt="<%=img%>">
+							</label>
+				
+						<%} %>
+					</div>
+				</div>
+			</div>
+			
+			<div class="button-wrapper"><button type="submit">Submit</button></div>
+		</form>
+		
 	</body>
+	<script>
+		const labels = document.querySelectorAll(".img-box label");
+		labels.forEach(label =>  {
+			label.addEventListener("click", (e) => {
+				labels.forEach((label) => {
+					label.classList.remove("selected");
+				})
+				label.classList.add("selected");
+			});
+		});
+	</script>
 </html>
