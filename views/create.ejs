@@ -25,18 +25,18 @@
 					</section>
 					<section>
 						<div class="input-label">
-							<label for="price">Price:</label>
-							<input type="number" name="price" id="price" max="99999">
+							<label for="price">Price(in g):</label>
+							<input type="number" name="price" id="price" max="99999" required>
 						</div>
 						<div class="input-label">
 							<label for="quantity">Quantity:</label>
-							<input type="number" name="quantity" id="quantity" max="99999">
+							<input type="number" name="quantity" id="quantity" max="99999" required>
 						</div>
 					</section>
 					<section>
 						<div class="input-label">
 							<label for="tier">Tier:</label>
-							<select name="tier" id="tier">
+							<select name="tier" id="tier" required>
 								<option value="">What tier is your weapon?</option>
 								<option value="1">1</option>
 								<option value="2">2</option>
@@ -45,7 +45,7 @@
 						</div>
 						<div class="input-label">
 							<label for="type">Type:</label>
-							<select name="type" id="type">
+							<select name="type" id="type" required>
 								<option value="">What type of weapon is your weapon?</option>
 								<option value="1">Sword</option>
 								<option value="2">Double Headed Axe</option>

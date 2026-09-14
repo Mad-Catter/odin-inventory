@@ -41,26 +41,17 @@ async function createWeapon(weaponName, weaponPrice, weaponQuantity, weaponImg, 
 }
 
 async function updateWeapon(id, updates) {
-	const values = Object.values(updates);
-	const keys = Object.keys(updates);
-	// This next part was google ai.
-	if (keys.length === 0) return; // Nothing to update
-
-	// Map keys to 'column_name = $index' format
-	const setClause = keys.map((key, index) => `"${key}" = $${index + 1}`).join(', ');
-	// The last parameter will be the id for the WHERE clause
-	const query = `UPDATE users SET ${setClause} WHERE id = $${keys.length + 1};`;
-	// Combine column values with the WHERE clause ID
-	const queryParams = [...values, id];
-	// Execute using your db client
-	const result = await db.query(query, queryParams);
+	const result = await pool.query(
+		`UPDATE main_table SET name = $1, price = $2, quantity = $3, img = $4, tier = $5, type = $6 WHERE id = $7 `,
+		[...updates, id],
+	);
 	return result;
 }
 
 async function deleteWeapon(id) {
 	const results = await pool.query(
 		`
-		DELETE * FROM main_table WHERE id = $1;`,
+		DELETE FROM main_table WHERE id = $1;`,
 		[id],
 	);
 	return id;

@@ -1,6 +1,11 @@
 const queries = require('./queries');
 const { weaponImagePaths } = require('../models/original_data');
-const { body, validationResult, matchedData } = require('express-validator');
+const { body, query, validationResult, matchedData } = require('express-validator');
+const { loadEnvFile } = require('node:process');
+if (process.env.NODE_ENV !== 'production') {
+	process.loadEnvFile();
+}
+const password = process.env.EDIT_PASSWORD;
 
 const getIndex = async (req, res) => {
 	const weapons = await queries.selectAllWeapons();
@@ -23,6 +28,33 @@ const getCreate = (req, res) => {
 		weaponImagePaths,
 	});
 };
+const getEdit = [
+	query('password')
+		.trim()
+		.custom((submittedPassword) => {
+			return submittedPassword === password;
+		}),
+	async (req, res) => {
+		const error = validationResult(req);
+		const { weaponId } = req.params;
+		const weapon = await queries.selectById(weaponId);
+		if (!error.isEmpty()) {
+			return res.status(400).render('details', {
+				weapon,
+				title: `Ye Olde Shoppe | ${weapon.name} Details`,
+
+				error: true,
+			});
+		} else {
+			return res.render('edit-weapon', {
+				weapon,
+				title: `Ye Olde Shoppe | ${weapon.name} Alteration`,
+				weaponImagePaths,
+			});
+		}
+	},
+];
+
 const validateForm = [
 	body('name')
 		.trim()
@@ -57,4 +89,31 @@ const postCreate = [
 	},
 ];
 
-module.exports = { getIndex, getDetails, getCreate, postCreate };
+const updateEdit = [
+	validateForm,
+	async (req, res) => {
+		const errors = validationResult(req);
+		const { weaponId } = req.params;
+		const weapon = await queries.selectById(weaponId);
+		if (!errors.isEmpty()) {
+			return res.render('edit-weapon', {
+				weapon,
+				title: `Ye Olde Shoppe | ${weapon.name} Alteration`,
+				weaponImagePaths,
+				errors,
+			});
+		}
+
+		const { name, price, quantity, image, tier, type } = matchedData(req);
+		await queries.updateWeapon(weaponId, [name, price, quantity, image, tier, type]);
+		res.redirect(`/details/${weaponId}`);
+	},
+];
+const deleteWeapon = async (req, res) => {
+	console.log('HERE HERE HERE');
+	const { weaponId } = req.params;
+	await queries.deleteWeapon(weaponId);
+	return res.redirect('/');
+};
+
+module.exports = { getIndex, getDetails, getCreate, postCreate, getEdit, updateEdit, deleteWeapon };

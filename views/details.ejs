@@ -9,17 +9,43 @@
 	</head>
 	<body>
 		<%- include('./partials/header') %>
-		<h1>Hello i am Details in Ye Olde Shoppe</h1>
-        <div class="item">
+		<h1>Details of <%=weapon.name%></h1>
+        <div class="detailed-item">
             <div class="img-wrapper">
                 <img src=<%=weapon.img%> alt=<%=weapon.name%>>
                 
             </div>
-            <p><%=weapon.name%></p>
-			<p>Price: <%=weapon.price%></p>
-			<p>Quantity: <%=weapon.quantity%></p>
-			<p>Tier: <%=weapon.tier%></p>
-			<p>Type: <%=weapon.type%></p>
+            <h2><%=weapon.name%></h2>
+			<div class="side-details">
+				<div class="price-quantity">
+					<p>Price: <%=weapon.price%>g</p>
+					<p>Quantity: <%=weapon.quantity%></p>
+				</div>
+				<div class="tier-type-classes">
+					<p>Tier: <%=weapon.tier%></p>
+					<p>Type: <%=weapon.type%></p>
+					<p>Classes: <%=weapon.class1%><%= (weapon.class2) ? ", " + weapon.class2 : ""%></p>
+				</div>
+			</div>
+			<div class="alter-div">
+				<% if (locals.error) { %>
+					<p class="password-error">Error: invalid password </p>
+				<%}%> 
+				<form action="/edit-weapon/<%=weapon.id%>" method="GET" class="invisible">
+					<label for="password" >Enter password:</label>
+					<input type="text" id="password" name="password" >
+					<button type="submit" class="submit-button">alter?</button>
+				</form>
+				<button type="button" class="alter-button">alter?</button>
+			</div>
         </div>
 	</body>
+	<script>
+		const btn = document.querySelector(".alter-button");
+		const form = document.querySelector("form")
+		btn.addEventListener("click", () => {
+			btn.classList.add("invisible")
+			form.classList.remove("invisible");
+		});
+	</script>
 </html>

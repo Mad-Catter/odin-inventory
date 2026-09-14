@@ -9,3 +9,5 @@ Font from google fonts https://fonts.google.com/specimen/MedievalSharp?query=med
 CONNECTION_STRING = "secret/url/here"
 
 NODE_ENV = "development"
+
+EDIT_PASSWORD = "secretpassword"
